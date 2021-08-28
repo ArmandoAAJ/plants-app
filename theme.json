@@ -1,0 +1,17 @@
+{
+  "pallet": {
+    "primary": {
+      "color": "#010101",
+      "text_color": "#F7F7F7"
+    },
+    "secondary": {
+      "color": "#313131",
+      "text_color": "#959595"
+    }
+  },
+  "text": {
+    "small": 12,
+    "normal": 14,
+    "large": 16
+  }
+}
