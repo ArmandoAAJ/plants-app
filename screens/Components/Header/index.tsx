@@ -17,11 +17,10 @@ export const Header = ({ back, search, bag }: PropsHeader) => {
 
   return (
     <Container>
-      {back && (
-        <Button onPress={() => handleBack()}>
-          <Icon name="keyboard-backspace" />
-        </Button>
-      )}
+      <Button onPress={() => handleBack()}>
+        {back && <Icon name="keyboard-backspace" />}
+      </Button>
+
       <Right>
         {search && (
           <Button onPress={() => handleSearch()}>
