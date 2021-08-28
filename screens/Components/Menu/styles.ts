@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import Theme from "../../../theme.json";
 
@@ -33,10 +34,12 @@ export const SubTitle = styled.Text`
 
 export const List = styled.View`
   width: 100%;
+  align-items: center;
 `;
 
 export const Item = styled.TouchableOpacity`
   margin-top: 100px;
+  width: 100%;
 `;
 
 interface PropsText {
@@ -53,3 +56,19 @@ export const Text = styled.Text<PropsText>`
   text-align: center;
   transform: rotate(270deg);
 `;
+
+export const ButtonCart = styled.TouchableOpacity`
+  background-color: #535353;
+  border-radius: 40px;
+  width: 60px;
+  height: 60px;
+  top: 200px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Icon = styled(MaterialIcons).attrs({
+  color: Theme.pallet.primary.text_color,
+  size: 25,
+})``;
+
