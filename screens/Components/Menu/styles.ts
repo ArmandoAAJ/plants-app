@@ -5,11 +5,20 @@ import Theme from "../../../theme.json";
 
 export const Container = styled.View`
   position: absolute;
+  justify-content: space-between;
   background-color: ${Theme.pallet.secondary.color};
   width: 30%;
   top: 0;
   bottom: 0;
-  padding-top: 100px;
+`;
+
+export const Content = styled.View``;
+
+export const ContentButton = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 40px;
 `;
 
 export const Title = styled.Text`
@@ -20,6 +29,7 @@ export const Title = styled.Text`
   font-size: ${Theme.text.normal}px;
   color: ${Theme.pallet.secondary.text_color};
   font-weight: bold;
+  padding-top: 60px;
 `;
 
 export const SubTitle = styled.Text`
@@ -32,14 +42,10 @@ export const SubTitle = styled.Text`
   font-weight: bold;
 `;
 
-export const List = styled.View`
-  width: 100%;
-  align-items: center;
-`;
+export const List = styled.View``;
 
 export const Item = styled.TouchableOpacity`
-  margin-top: 100px;
-  width: 100%;
+  margin-bottom: 80px;
 `;
 
 interface PropsText {
@@ -59,10 +65,9 @@ export const Text = styled.Text<PropsText>`
 
 export const ButtonCart = styled.TouchableOpacity`
   background-color: #535353;
-  border-radius: 40px;
-  width: 60px;
+  border-radius: 30px;
   height: 60px;
-  top: 200px;
+  width: 60px;
   align-items: center;
   justify-content: center;
 `;
@@ -71,4 +76,3 @@ export const Icon = styled(MaterialIcons).attrs({
   color: Theme.pallet.primary.text_color,
   size: 25,
 })``;
-
