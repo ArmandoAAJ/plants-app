@@ -3,25 +3,25 @@ import Immutable from "seamless-immutable";
 
 /* Types & Action Creators */
 
-const { Types, Creators } = createActions(
-  {
-    setState: ["payload"],
-  },
-);
+const { Types, Creators } = createActions({
+  setState: ["payload"],
+  getPlants: [],
+});
 
-export const PlantList = Types;
+export const PlantTypes = Types;
 export default Creators;
 
 /* Initial State */
+
 export const INITIAL_STATE = Immutable({
-  isLoading: false,
   list: [],
+  isLoading: false,
 });
 
 /* Reducers */
 
 // export const reducer = state =>
-//   state.merge({ data: [] });
+//	 state.merge({ data: [] });
 
 /* Reducers to types */
 

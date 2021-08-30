@@ -1,23 +1,40 @@
-import { all, takeEvery, put, call, select } from "redux-saga/effects";
-import axios from "../../config/api";
-import creator, { PlantList } from "../ducks/listPlants";
+import {all, takeEvery, put, call, select} from 'redux-saga/effects';
+import creator, {PlantTypes} from '../ducks/listPlants';
 
-export function* GET_LIST() {
-  yield put(creator.setState({ isLoading: true }));
-  try {
-    const { data } = yield call(axios.get, "plants");
-    if (data && Array.isArray(data)) {
-      yield put(
-        creator.setState({ list: data.length > 0 ? data[0].listas : [] })
-      );
+import axios from '../../config/api';
+
+interface Plant {
+    id: number;
+    name: string;
+    abount: string;
+    water_tips: string;
+    photo: string;
+    environments: [string];
+    frequency: {
+        watering: number;
+        repeat_every: string;
+        height: string;
+        temperature: number;
+    };
+}
+
+export function* GET_PLANTS() {
+    yield put(creator.setState({isLoading: true}));
+    try {
+        const {data} = yield call(axios, 'plants');
+
+        const plant: Plant = data.filter(
+            (p: Plant) => p.environments,
+        );
+
+        console.log(plant);
+    } catch (e) {
+        console.log(e);
+    } finally {
+        yield put(creator.setState({isLoading: false}));
     }
-  } catch (e) {
-    console.log(e);
-  } finally {
-    yield put(creator.setState({ isLoading: false }));
-  }
 }
 
 export default function* rootSaga() {
-  yield all([takeEvery(PlantList.GET_LIST, GET_LIST)]);
+    yield all([takeEvery(PlantTypes.GET_PLANTS, GET_PLANTS)]);
 }
