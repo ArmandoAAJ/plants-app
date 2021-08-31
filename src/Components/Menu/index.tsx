@@ -18,7 +18,12 @@ import {
 import creator from '../../store/ducks/listPlants';
 
 export const Menu = () => {
-    const [chengeOptin, setChangeOption] = useState('');
+    const dispatch = useDispatch();
+    const [option, setOption] = useState('');
+
+    useEffect(() => {
+        dispatch(creator.filter(option));
+    }, [option]);
 
     return (
         <Container>
@@ -28,19 +33,19 @@ export const Menu = () => {
             </Content>
             <List>
                 <Item
-                    onPress={() => setChangeOption('indor')}
-                    disabled={chengeOptin === 'indor'}>
-                    <Text color={chengeOptin === 'indor'}>Indor</Text>
+                    onPress={() => setOption('indoor')}
+                    disabled={option === 'indoor'}>
+                    <Text color={option === 'indoor'}>Indoor</Text>
                 </Item>
                 <Item
-                    onPress={() => setChangeOption('outdor')}
-                    disabled={chengeOptin === 'outdor'}>
-                    <Text color={chengeOptin === 'outdor'}>Outdor</Text>
+                    onPress={() => setOption('outdoor')}
+                    disabled={option === 'outdoor'}>
+                    <Text color={option === 'outdoor'}>Outdoor</Text>
                 </Item>
                 <Item
-                    onPress={() => setChangeOption('garden')}
-                    disabled={chengeOptin === 'garden'}>
-                    <Text color={chengeOptin === 'garden'}>Garden</Text>
+                    onPress={() => setOption('garden')}
+                    disabled={option === 'garden'}>
+                    <Text color={option === 'garden'}>Garden</Text>
                 </Item>
             </List>
             <ContentButton>
