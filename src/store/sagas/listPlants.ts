@@ -23,11 +23,7 @@ export function* GET_PLANTS() {
     try {
         const {data} = yield call(axios, 'plants');
 
-        const plant: Plant = data.filter(
-            (p: Plant) => p.environments,
-        );
-
-        console.log(plant);
+        yield put(creator.setState({list: data}));
     } catch (e) {
         console.log(e);
     } finally {
