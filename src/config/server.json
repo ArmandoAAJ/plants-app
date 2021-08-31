@@ -6,7 +6,7 @@
       "about": "É uma espécie tropical que tem crescimento rápido e fácil manuseio.",
       "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 2 vezes na semana.",
       "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/1.svg",
-      "environments": ["indor"],
+      "environments": ["indoor"],
       "frequency": {
         "watering": 3,
         "repeat_every": "week",
@@ -20,7 +20,7 @@
       "about": "Apesar de florescer na primavera, fica o ano todo bonita e verdinha. ",
       "water_tips": "Utilize vasos com furos e pedras no fundo para facilitar a drenagem. Regue 1 vez no dia.",
       "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/2.svg",
-      "environments": ["indor"],
+      "environments": ["indoor"],
       "frequency": {
         "watering": 1,
         "repeat_every": "day",
@@ -34,7 +34,7 @@
       "about": "Adapta-se tanto ao sol e sombra, mas prefere ficar num cantinho fresco, sem sol direto. ",
       "water_tips": "Nos dias mais quentes borrife água nas folhas. Regue 3 vezes na semana.",
       "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
-      "environments": ["indor"],
+      "environments": ["indoor"],
       "frequency": {
         "watering": 3,
         "repeat_every": "week",
