@@ -12,10 +12,9 @@ import {Container, List} from './styles';
 
 export const Home = () => {
     const dispatch = useDispatch();
-    const [isLoading, list] = useSelector((state: RootStateOrAny) => [
-        state.plants.isLoading,
-        state.plants.list,
-    ]);
+    const [isLoading, list, listFiltered] = useSelector(
+        (state: RootStateOrAny) => [state.plants.isLoading, state.plants.list],
+    );
 
     const load = useCallback(() => {
         dispatch(creator.getPlants());
@@ -31,7 +30,7 @@ export const Home = () => {
             <Menu />
             <List>
                 <FlatList
-                    data={list}
+                    data={listFiltered}
                     renderItem={renderItem}
                     keyExtractor={(item) => String(item.id)}
                 />
