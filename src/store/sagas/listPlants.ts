@@ -3,21 +3,6 @@ import creator, {PlantTypes} from '../ducks/listPlants';
 
 import axios from '../../config/api';
 
-interface Plant {
-    id: number;
-    name: string;
-    abount: string;
-    water_tips: string;
-    photo: string;
-    environments: [string];
-    frequency: {
-        watering: number;
-        repeat_every: string;
-        height: string;
-        temperature: number;
-    };
-}
-
 export function* GET_PLANTS() {
     yield put(creator.setState({isLoading: true}));
     try {
@@ -31,6 +16,57 @@ export function* GET_PLANTS() {
     }
 }
 
+interface PropsFilter {
+    option: String;
+}
+
+export interface PropsState {
+    plants: {
+        list: [
+            {
+                id: Number;
+                name: String;
+                abount: String;
+                water_tips: String;
+                photo: String;
+                environments: [String];
+                frequency: {
+                    watering: Number;
+                    repeat_every: String;
+                    height: String;
+                    temperature: Number;
+                };
+            },
+        ];
+    };
+}
+
+export function* FILTER({option}: PropsFilter) {
+    yield put(creator.setState({isLoading: true}));
+    try {
+        const data: PropsState = yield select((state) => state);
+
+        if (option.length < 1) {
+            yield put(creator.setState({listFiltered: []}));
+            return;
+        }
+        const newArray = data.plants.list.filter((p) => {
+            const [array] = p.environments.map((e) => e === option);
+            if (array) {
+                return p;
+            }
+        });
+        yield put(creator.setState({listFiltered: newArray}));
+    } catch (e) {
+        console.log(e);
+    } finally {
+        yield put(creator.setState({isLoading: false}));
+    }
+}
+
 export default function* rootSaga() {
-    yield all([takeEvery(PlantTypes.GET_PLANTS, GET_PLANTS)]);
+    yield all([
+        takeEvery(PlantTypes.GET_PLANTS, GET_PLANTS),
+        takeEvery(PlantTypes.FILTER, FILTER),
+    ]);
 }
