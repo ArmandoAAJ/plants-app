@@ -25,6 +25,18 @@ export const Menu = () => {
         dispatch(creator.filter(option));
     }, [option]);
 
+    interface handleFilterProps {
+        value: String;
+    }
+
+    const handleFilter = ({value}: handleFilterProps) => {
+        if (value !== option) {
+            setOption(`${value}`);
+            return;
+        }
+        setOption('');
+    };
+
     return (
         <Container>
             <Content>
@@ -32,19 +44,13 @@ export const Menu = () => {
                 <SubTitle>Plants</SubTitle>
             </Content>
             <List>
-                <Item
-                    onPress={() => setOption('indoor')}
-                    disabled={option === 'indoor'}>
+                <Item onPress={() => handleFilter({value: 'indoor'})}>
                     <Text color={option === 'indoor'}>Indoor</Text>
                 </Item>
-                <Item
-                    onPress={() => setOption('outdoor')}
-                    disabled={option === 'outdoor'}>
+                <Item onPress={() => handleFilter({value: 'outdoor'})}>
                     <Text color={option === 'outdoor'}>Outdoor</Text>
                 </Item>
-                <Item
-                    onPress={() => setOption('garden')}
-                    disabled={option === 'garden'}>
+                <Item onPress={() => handleFilter({value: 'garden'})}>
                     <Text color={option === 'garden'}>Garden</Text>
                 </Item>
             </List>
