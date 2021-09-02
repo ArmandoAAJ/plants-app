@@ -51,11 +51,15 @@ export function* FILTER({option}: PropsFilter) {
             return;
         }
         const newArray = data.plants.list.filter((p) => {
-            const [array] = p.environments.map((e) => e === option);
-            if (array) {
-                return p;
-            }
+            const [a, b] = p.environments.map((e) => {
+                if (e === option) {
+                    return p;
+                }
+            });
+            if (!!b) return b;
+            if (!!a) return a;
         });
+
         yield put(creator.setState({listFiltered: newArray}));
     } catch (e) {
         console.log(e);
