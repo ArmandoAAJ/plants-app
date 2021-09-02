@@ -9,8 +9,7 @@ export const Container = styled.View`
 export const List = styled.View`
     position: absolute;
     left: 30%;
-    top: 120px;
-    bottom: 0;
+    top: 80px;
+    bottom: 40px;
     right: 0;
-    background-color: aqua;
 `;
