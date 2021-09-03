@@ -11,7 +11,8 @@ import creator from '../../store/ducks/listPlants';
 
 import {Container, List} from './styles';
 
-export const Home = () => {
+export const Home = ({navigation}) => {
+    console.log(navigation)
     const dispatch = useDispatch();
     const [isLoading, list, listFiltered] = useSelector(
         (state: RootStateOrAny) => [
@@ -34,7 +35,7 @@ export const Home = () => {
             <List>
                 <FlatList
                     data={listFiltered.length < 1 ? list : listFiltered}
-                    renderItem={({item}) => <ListItem plant={item}/>}
+                    renderItem={({item}) => <ListItem plant={item} navigation={navigation}/>}
                     keyExtractor={(item) => String(item.id)}
                 />
             </List>
