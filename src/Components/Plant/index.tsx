@@ -11,7 +11,9 @@ import {
     Collumn,
     Row,
     Title,
-    Details
+    Details,
+    Button,
+    Icon,
 } from './styles';
 
 export const Plant: React.FC = (props) => {
@@ -61,11 +63,22 @@ export const Plant: React.FC = (props) => {
                             </Row>
                         </Collumn>
                     </Info>
-                    <Details>
-                        <Title>{props.route.params.plant.name}</Title>
-                    </Details>
                 </CardContent>
+                <Details>
+                    <Title size={25} color>
+                        {props.route.params.plant.name}
+                    </Title>
+                    <Title top={10}>{props.route.params.plant.about}</Title>
+                </Details>
             </Content>
+            <Button>
+                <Row style={{display: 'flex', justifyContent: 'space-around'}}>
+                <Icon name="shopping-bag" />
+                <Title>Add to cart</Title>
+                <Title>|</Title>
+                <Title>15,99</Title>
+                </Row>
+            </Button>
         </Container>
     );
 };
