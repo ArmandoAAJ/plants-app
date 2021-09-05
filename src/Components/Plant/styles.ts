@@ -1,17 +1,19 @@
 import styled from 'styled-components/native';
+import { MaterialIcons } from "@expo/vector-icons";
 import {SvgFromUri} from 'react-native-svg';
 import Theme from '../../../theme.json';
 
 export const Container = styled.View`
     flex: 1;
     background-color: ${Theme.pallet.primary.color};
+    padding-bottom: 20px;
+    justify-content: space-between;
 `;
 
 export const Content = styled.View`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin: 70px 0;
+    flex: 1;
 `;
 
 export const Card = styled.TouchableOpacity`
@@ -45,7 +47,6 @@ export const SVG = styled(SvgFromUri).attrs({
 export const Collumn = styled.View`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin-left: 25%;
 `;
 
@@ -58,11 +59,13 @@ export const Row = styled.View`
 export const Details = styled.View`
     display: flex;
     flex-direction: column;
+    margin: 50px 30px;
 `;
 
 interface PropsTitle {
     color?: boolean;
     size?: number;
+    top?: number;
 }
 
 export const Title = styled.Text<PropsTitle>`
@@ -71,4 +74,29 @@ export const Title = styled.Text<PropsTitle>`
             ? Theme.pallet.primary.text_color
             : Theme.pallet.secondary.text_color};
     font-size: ${(props) => (props.size ? props.size : Theme.text.small)}px;
+    margin-top: ${(props) => props.top || 0}px;
+    line-height: 25px;
 `;
+
+export const Button = styled.TouchableOpacity`
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    background-color: #6ecb7b;
+`;
+
+interface IconProps {
+    padding: number;
+  }
+  
+  export const Icon = styled(MaterialIcons).attrs({
+    color: Theme.pallet.primary.text_color,
+    size: 25,
+  })<IconProps>`
+    margin-right: ${(props) => props.padding || 0}px;
+  `;
