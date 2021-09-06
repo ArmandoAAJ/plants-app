@@ -1,6 +1,10 @@
 import React from 'react';
+import {NavigatorScreenParams} from '@react-navigation/native';
 
-import {Header} from '../Header';
+import {Header} from '../../Components/Header';
+
+import {PlantProps} from '../../config/types';
+
 import {
     Container,
     Content,
@@ -14,30 +18,34 @@ import {
     Details,
     Button,
     Icon,
+    ButtonAlign,
 } from './styles';
 
-export const Plant: React.FC = (props) => {
+interface Plant {
+    plant: PlantProps;
+}
+
+export const Plant = ({route}: any) => {
+    const {plant}: Plant = route.params;
+
     return (
         <Container>
             <Header back bag />
             <Content>
                 <CardContent>
                     <Card>
-                        <SVG uri={props.route.params.plant.photo} />
+                        <SVG uri={plant.photo} />
                     </Card>
                     <Info>
                         <Collumn>
                             <Title>Watering</Title>
                             <Row>
                                 <Title size={20} color>
-                                    {props.route.params.plant.frequency.times}
+                                    {plant.frequency.times}
                                 </Title>
                                 <Title>
                                     {' /'}
-                                    {
-                                        props.route.params.plant.frequency
-                                            .repeat_every
-                                    }
+                                    {plant.frequency.repeat_every}
                                 </Title>
                             </Row>
                         </Collumn>
@@ -45,7 +53,7 @@ export const Plant: React.FC = (props) => {
                             <Title>Height</Title>
                             <Row>
                                 <Title size={20} color>
-                                    {props.route.params.plant.frequency.height}
+                                    {plant.frequency.height}
                                 </Title>
                                 <Title>{' /'}cm</Title>
                             </Row>
@@ -54,10 +62,7 @@ export const Plant: React.FC = (props) => {
                             <Title>Temperature</Title>
                             <Row>
                                 <Title size={20} color>
-                                    {
-                                        props.route.params.plant.frequency
-                                            .temperature
-                                    }
+                                    {plant.frequency.temperature}
                                 </Title>
                                 <Title> {' /'}°C</Title>
                             </Row>
@@ -66,18 +71,26 @@ export const Plant: React.FC = (props) => {
                 </CardContent>
                 <Details>
                     <Title size={25} color>
-                        {props.route.params.plant.name}
+                        {plant.name}
                     </Title>
-                    <Title top={10}>{props.route.params.plant.about}</Title>
+                    <Title top={10}>{plant.about}</Title>
                 </Details>
             </Content>
             <Button>
-                <Row style={{display: 'flex', justifyContent: 'space-around'}}>
-                <Icon name="shopping-bag" />
-                <Title>Add to cart</Title>
-                <Title>|</Title>
-                <Title>15,99</Title>
-                </Row>
+                <ButtonAlign>
+                    <Row>
+                        <Icon name="shopping-bag" />
+                        <Title color size={18} left={5}>
+                            Add to cart
+                        </Title>
+                    </Row>
+                    <Title color size={30}>
+                        |
+                    </Title>
+                    <Title color size={18}>
+                        ${plant.price}
+                    </Title>
+                </ButtonAlign>
             </Button>
         </Container>
     );

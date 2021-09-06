@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { MaterialIcons } from "@expo/vector-icons";
+import {MaterialIcons} from '@expo/vector-icons';
 import {SvgFromUri} from 'react-native-svg';
 import Theme from '../../../theme.json';
 
@@ -66,6 +66,7 @@ interface PropsTitle {
     color?: boolean;
     size?: number;
     top?: number;
+    left?: number;
 }
 
 export const Title = styled.Text<PropsTitle>`
@@ -75,6 +76,7 @@ export const Title = styled.Text<PropsTitle>`
             : Theme.pallet.secondary.text_color};
     font-size: ${(props) => (props.size ? props.size : Theme.text.small)}px;
     margin-top: ${(props) => props.top || 0}px;
+    margin-left: ${(props) => props.left || 0}px;
     line-height: 25px;
 `;
 
@@ -92,11 +94,20 @@ export const Button = styled.TouchableOpacity`
 
 interface IconProps {
     padding: number;
-  }
-  
-  export const Icon = styled(MaterialIcons).attrs({
+}
+
+export const Icon = styled(MaterialIcons).attrs({
     color: Theme.pallet.primary.text_color,
     size: 25,
-  })<IconProps>`
+})<IconProps>`
     margin-right: ${(props) => props.padding || 0}px;
-  `;
+`;
+
+export const ButtonAlign = styled.TouchableOpacity`
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+`;

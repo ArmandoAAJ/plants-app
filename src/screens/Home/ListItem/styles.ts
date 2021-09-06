@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {SvgFromUri} from 'react-native-svg';
 import {MaterialIcons} from '@expo/vector-icons';
 
-import Theme from '../../../theme.json';
+import Theme from '../../../../theme.json';
 export const Container = styled.View``;
 
 export const Card = styled.TouchableOpacity`
