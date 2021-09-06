@@ -1,147 +1,157 @@
 {
-  "plants": [
-    {
-      "id": 1,
-      "name": "Aningapara",
-      "about": "É uma espécie tropical que tem crescimento rápido e fácil manuseio.",
-      "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 2 vezes na semana.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/1.svg",
-      "environments": ["indoor"],
-      "frequency": {
-        "times": 3,
-        "watering": 3,
-        "repeat_every": "week",
-        "height": "12",
-        "temperature": 26
-      }
-    },
-    {
-      "id": 2,
-      "name": "Zamioculca",
-      "about": "Apesar de florescer na primavera, fica o ano todo bonita e verdinha. ",
-      "water_tips": "Utilize vasos com furos e pedras no fundo para facilitar a drenagem. Regue 1 vez no dia.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/2.svg",
-      "environments": ["indoor"],
-      "frequency": {
-        "times": 4,
-        "watering": 1,
-        "repeat_every": "day",
-        "height": "12",
-        "temperature": 20
-      }
-    },
-    {
-      "id": 3,
-      "name": "Peperomia",
-      "about": "Adapta-se tanto ao sol e sombra, mas prefere ficar num cantinho fresco, sem sol direto. ",
-      "water_tips": "Nos dias mais quentes borrife água nas folhas. Regue 3 vezes na semana.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
-      "environments": ["indoor"],
-      "frequency": {
-        "times": 5,
-        "watering": 3,
-        "repeat_every": "week",
-        "height": "60",
-        "temperature": 20
-      }
-    },
-    {
-      "id": 4,
-      "name": "Imbé",
-      "about": "De médio porte que se adapta a diversas regiões, além de ser bem fácil de cultivar. Conquista cada vez mais pessoas.",
-      "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 2 vezes na semana.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/4.svg",
-      "environments": ["outdoor"],
-      "frequency": {
-        "times": 2,
-        "repeat_every": "week",
-        "height": "120",
-        "temperature": 20
-      }
-    },
-    {
-      "id": 5,
-      "name": "Espada São Jorge",
-      "about": "O aroma reduz os níveis de ansiedade e seu cheiro ajudar na qualidade do sono e a produtividade durante o dia.",
-      "water_tips": "Regue o solo ao redor. Regue 1 vez no dia.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/5.svg",
-      "environments": ["outdoor"],
-      "frequency": {
-        "times": 1,
-        "repeat_every": "day",
-        "height": "45",
-        "temperature": 17
-      }
-    },
-    {
-      "id": 6,
-      "name": "Yucca",
-      "about": "São indicadas pois são fáceis de manter e cuidar. Você colocar em pequenos vasos, ou até mesmo em xícaras.",
-      "water_tips": "Graças à reserva de água dessas verdinhas, é sempre melhor regar pouco. Regue 1 vez na semana.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/6.svg",
-      "environments": ["outdoor"],
-      "frequency": {
-        "times": 1,
-        "repeat_every": "week",
-        "height": "18",
-        "temperature": 30
-      }
-    },
-    {
-      "id": 7,
-      "name": "Frutíferas",
-      "about": "Exigem algumas horinhas de sol por dia, por isso deixe próximo a janelas.",
-      "water_tips": "Regue sempre na terra e não as folhas. Regue 3 vezes na semana",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/7.svg",
-      "environments": ["outdoor", "garden"],
-      "frequency": {
-        "times": 3,
-        "repeat_every": "week",
-        "height": "120",
-        "temperature": 10
-      }
-    },
-    {
-      "id": 8,
-      "name": "Orquídea",
-      "about": "Traz sensação de tranquilidade e paz ao ambiente. Requer pouca manutenção e ótima para quem tem pouco espaço.",
-      "water_tips": "Regue moderadamente. Reque 4 vezes na semana.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/8.svg",
-      "environments": ["outdoor", "garden"],
-      "frequency": {
-        "times": 4,
-        "repeat_every": "week",
-        "height": "67",
-        "temperature": 29
-      }
-    },
-    {
-      "id": 9,
-      "name": "Violeta",
-      "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
-      "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
-      "environments": ["garden"],
-      "frequency": {
-        "times": 2,
-        "repeat_every": "week",
-        "height": "12",
-        "temperature": 10
-      }
-    },
-    {
-      "id": 10,
-      "name": "Hortênsia",
-      "about": "A hortênsia é uma planta rústica e se adapta a diferentes tipos de solos.",
-      "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 1 vez no dia.",
-      "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/2.svg",
-      "environments": ["garden"],
-      "frequency": {
-        "times": 1,
-        "repeat_every": "day",
-        "height": "180",
-        "temperature": 40
-      }
-    }
-  ]
+    "plants": [
+        {
+            "id": 1,
+            "name": "Aningapara",
+            "price": 100,
+            "about": "É uma espécie tropical que tem crescimento rápido e fácil manuseio.",
+            "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 2 vezes na semana.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/1.svg",
+            "environments": ["indoor"],
+            "frequency": {
+                "times": 3,
+                "watering": 3,
+                "repeat_every": "week",
+                "height": "12",
+                "temperature": 26
+            }
+        },
+        {
+            "id": 2,
+            "name": "Zamioculca",
+            "price": 89.12,
+            "about": "Apesar de florescer na primavera, fica o ano todo bonita e verdinha. ",
+            "water_tips": "Utilize vasos com furos e pedras no fundo para facilitar a drenagem. Regue 1 vez no dia.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/2.svg",
+            "environments": ["indoor"],
+            "frequency": {
+                "times": 4,
+                "watering": 1,
+                "repeat_every": "day",
+                "height": "12",
+                "temperature": 20
+            }
+        },
+        {
+            "id": 3,
+            "name": "Peperomia",
+            "price": 17.14,
+            "about": "Adapta-se tanto ao sol e sombra, mas prefere ficar num cantinho fresco, sem sol direto. ",
+            "water_tips": "Nos dias mais quentes borrife água nas folhas. Regue 3 vezes na semana.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+            "environments": ["indoor"],
+            "frequency": {
+                "times": 5,
+                "watering": 3,
+                "repeat_every": "week",
+                "height": "60",
+                "temperature": 20
+            }
+        },
+        {
+            "id": 4,
+            "name": "Imbé",
+            "price": 19.99,
+            "about": "De médio porte que se adapta a diversas regiões, além de ser bem fácil de cultivar. Conquista cada vez mais pessoas.",
+            "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 2 vezes na semana.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/4.svg",
+            "environments": ["outdoor"],
+            "frequency": {
+                "times": 2,
+                "repeat_every": "week",
+                "height": "120",
+                "temperature": 20
+            }
+        },
+        {
+            "id": 5,
+            "name": "Espada São Jorge",
+            "price": 62.01,
+            "about": "O aroma reduz os níveis de ansiedade e seu cheiro ajudar na qualidade do sono e a produtividade durante o dia.",
+            "water_tips": "Regue o solo ao redor. Regue 1 vez no dia.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/5.svg",
+            "environments": ["outdoor"],
+            "frequency": {
+                "times": 1,
+                "repeat_every": "day",
+                "height": "45",
+                "temperature": 17
+            }
+        },
+        {
+            "id": 6,
+            "name": "Yucca",
+            "price": 23.66,
+            "about": "São indicadas pois são fáceis de manter e cuidar. Você colocar em pequenos vasos, ou até mesmo em xícaras.",
+            "water_tips": "Graças à reserva de água dessas verdinhas, é sempre melhor regar pouco. Regue 1 vez na semana.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/6.svg",
+            "environments": ["outdoor"],
+            "frequency": {
+                "times": 1,
+                "repeat_every": "week",
+                "height": "18",
+                "temperature": 30
+            }
+        },
+        {
+            "id": 7,
+            "name": "Frutíferas",
+            "price": 128.14,
+            "about": "Exigem algumas horinhas de sol por dia, por isso deixe próximo a janelas.",
+            "water_tips": "Regue sempre na terra e não as folhas. Regue 3 vezes na semana",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/7.svg",
+            "environments": ["outdoor", "garden"],
+            "frequency": {
+                "times": 3,
+                "repeat_every": "week",
+                "height": "120",
+                "temperature": 10
+            }
+        },
+        {
+            "id": 8,
+            "name": "Orquídea",
+            "price": 6.1,
+            "about": "Traz sensação de tranquilidade e paz ao ambiente. Requer pouca manutenção e ótima para quem tem pouco espaço.",
+            "water_tips": "Regue moderadamente. Reque 4 vezes na semana.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/8.svg",
+            "environments": ["outdoor", "garden"],
+            "frequency": {
+                "times": 4,
+                "repeat_every": "week",
+                "height": "67",
+                "temperature": 29
+            }
+        },
+        {
+            "id": 9,
+            "name": "Violeta",
+            "price": 291.99,
+            "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+            "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+            "environments": ["garden"],
+            "frequency": {
+                "times": 2,
+                "repeat_every": "week",
+                "height": "12",
+                "temperature": 10
+            }
+        },
+        {
+            "id": 10,
+            "name": "Hortênsia",
+            "price": 99.99,
+            "about": "A hortênsia é uma planta rústica e se adapta a diferentes tipos de solos.",
+            "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 1 vez no dia.",
+            "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/2.svg",
+            "environments": ["garden"],
+            "frequency": {
+                "times": 1,
+                "repeat_every": "day",
+                "height": "180",
+                "temperature": 40
+            }
+        }
+    ]
 }
