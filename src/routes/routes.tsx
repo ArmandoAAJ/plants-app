@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {Home} from '../screens/Home';
-import {Plant} from '../Components/Plant';
+import {Plant} from '../screens/Plant';
 
 const stackRoutes = createStackNavigator();
 

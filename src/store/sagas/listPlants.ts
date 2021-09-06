@@ -1,13 +1,14 @@
 import {all, takeEvery, put, call, select} from 'redux-saga/effects';
 import creator, {PlantTypes} from '../ducks/listPlants';
 
-import axios from '../../config/api';
+import {PlantProps} from '../../config/types';
+
+import api from '../../config/api';
 
 export function* GET_PLANTS() {
     yield put(creator.setState({isLoading: true}));
     try {
-        const {data} = yield call(axios, 'plants');
-
+        const {data} = yield call(api, 'plants');
         yield put(creator.setState({list: data}));
     } catch (e) {
         console.log(e);
@@ -16,41 +17,19 @@ export function* GET_PLANTS() {
     }
 }
 
-interface PropsFilter {
-    option: String;
-}
+type Params = {option: string};
 
-export interface PropsState {
-    plants: {
-        list: [
-            {
-                id: Number;
-                name: String;
-                abount: String;
-                water_tips: String;
-                photo: String;
-                environments: [String];
-                frequency: {
-                    watering: Number;
-                    repeat_every: String;
-                    height: String;
-                    temperature: Number;
-                };
-            },
-        ];
-    };
-}
-
-export function* FILTER({option}: PropsFilter) {
+export function* FILTER({option}: Params) {
     yield put(creator.setState({isLoading: true}));
+
     try {
-        const data: PropsState = yield select((state) => state);
+        const {plants} = yield select((state) => state);
 
         if (option.length < 1) {
             yield put(creator.setState({listFiltered: []}));
             return;
         }
-        const newArray = data.plants.list.filter((p) => {
+        const newArray = plants.list.filter((p: PlantProps) => {
             const [a, b] = p.environments.map((e) => {
                 if (e === option) {
                     return p;
@@ -59,7 +38,6 @@ export function* FILTER({option}: PropsFilter) {
             if (!!b) return b;
             if (!!a) return a;
         });
-
         yield put(creator.setState({listFiltered: newArray}));
     } catch (e) {
         console.log(e);

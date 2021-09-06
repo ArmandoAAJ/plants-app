@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable';
 const {Types, Creators} = createActions({
     setState: ['payload'],
     getPlants: [],
-    filter: ['option']
+    filter: ['option'],
 });
 
 export const PlantTypes = Types;
@@ -15,38 +15,8 @@ export default Creators;
 /* Initial State */
 
 export const INITIAL_STATE = Immutable({
-    list: [
-        {
-            id: Number,
-            name: String,
-            abount: String,
-            water_tips: String,
-            photo: String,
-            environments: [String],
-            frequency: {
-                watering: Number,
-                repeat_every: String,
-                height: String,
-                temperature: Number,
-            },
-        },
-    ],
-    listFiltered: [
-        {
-            id: Number,
-            name: String,
-            abount: String,
-            water_tips: String,
-            photo: String,
-            environments: [String],
-            frequency: {
-                watering: Number,
-                repeat_every: String,
-                height: String,
-                temperature: Number,
-            },
-        },
-    ],
+    list: [],
+    listFiltered: [],
     isLoading: false,
 });
 
