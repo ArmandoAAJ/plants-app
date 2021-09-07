@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Container, Right, Icon, Button} from './styles';
+import {Container, Right, Icon, Button, TextInput} from './styles';
 
 interface PropsHeader {
     back?: boolean;
@@ -9,6 +9,7 @@ interface PropsHeader {
 }
 
 export const Header = ({back, search, bag}: PropsHeader) => {
+    const [term, setTerm] = useState('');
     const navigation = useNavigation();
     const handleBack = () => {
         navigation.navigate('Home');
@@ -26,9 +27,18 @@ export const Header = ({back, search, bag}: PropsHeader) => {
 
             <Right>
                 {search && (
-                    <Button onPress={() => handleSearch()}>
-                        <Icon name="search" padding={20} />
-                    </Button>
+                    <>
+                        <TextInput
+                            onChangeText={setTerm}
+                            value={term}
+                            placeholder="Pesquisar"
+                        />
+                        <Button
+                            onPress={() => handleSearch()}
+                            disabled={term.length < 1}>
+                            <Icon name="search" padding={5} />
+                        </Button>
+                    </>
                 )}
                 {bag && (
                     <Button onPress={() => handleBag()}>
