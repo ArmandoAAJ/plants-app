@@ -35,7 +35,7 @@ export const Home: React.FC = (props) => {
 
     return (
         <Container>
-            <Header bag search />
+            <Header search bag />
             <Menu />
             <List>
                 {loading && <Load />}
