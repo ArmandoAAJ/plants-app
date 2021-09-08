@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
+import creator from '../../store/ducks/listPlants';
 import {Container, Right, Icon, Button, TextInput} from './styles';
 
 interface PropsHeader {
@@ -9,13 +11,16 @@ interface PropsHeader {
 }
 
 export const Header = ({back, search, bag}: PropsHeader) => {
+    const dispatch = useDispatch();
     const [term, setTerm] = useState('');
     const navigation = useNavigation();
     const handleBack = () => {
         navigation.navigate('Home');
     };
 
-    const handleSearch = () => {};
+    const handleSearch = () => {
+        dispatch(creator.search(term));
+    };
 
     const handleBag = () => {};
 
@@ -33,9 +38,7 @@ export const Header = ({back, search, bag}: PropsHeader) => {
                             value={term}
                             placeholder="Pesquisar"
                         />
-                        <Button
-                            onPress={() => handleSearch()}
-                            disabled={term.length < 1}>
+                        <Button onPress={() => handleSearch()}>
                             <Icon name="search" padding={5} />
                         </Button>
                     </>
