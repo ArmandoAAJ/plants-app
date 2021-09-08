@@ -7,6 +7,7 @@ const {Types, Creators} = createActions({
     setState: ['payload'],
     getPlants: [],
     filter: ['option'],
+    search: ['term']
 });
 
 export const PlantTypes = Types;
