@@ -57,13 +57,8 @@ export function* SEARCH({term}: Params) {
         const {plants} = yield select((state) => state);
         let newArray = [];
 
-        if (plants.listFiltered.length > 1) {
-            newArray = plants.listFiltered.filter(
-                (p: PlantProps) => p.name === term,
-            );
-        } else {
-            newArray = plants.list.filter((p: PlantProps) => p.name === term);
-        }
+        newArray = plants.list.filter((p: PlantProps) => p.name === term);
+
         yield put(creator.setState({listFiltered: newArray}));
     } catch (e) {
         console.log(e);
