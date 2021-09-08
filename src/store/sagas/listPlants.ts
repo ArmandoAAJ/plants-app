@@ -17,7 +17,7 @@ export function* GET_PLANTS() {
     }
 }
 
-type Params = {option: string};
+type Params = {option: string; term: string};
 
 export function* FILTER({option}: Params) {
     yield put(creator.setState({isLoading: true}));
@@ -46,9 +46,36 @@ export function* FILTER({option}: Params) {
     }
 }
 
+export function* SEARCH({term}: Params) {
+    yield put(creator.setState({isLoading: true}));
+
+    try {
+        if (term.length < 1) {
+            yield put(creator.setState({listFiltered: []}));
+            return;
+        }
+        const {plants} = yield select((state) => state);
+        let newArray = [];
+
+        if (plants.listFiltered.length > 1) {
+            newArray = plants.listFiltered.filter(
+                (p: PlantProps) => p.name === term,
+            );
+        } else {
+            newArray = plants.list.filter((p: PlantProps) => p.name === term);
+        }
+        yield put(creator.setState({listFiltered: newArray}));
+    } catch (e) {
+        console.log(e);
+    } finally {
+        yield put(creator.setState({isLoading: false}));
+    }
+}
+
 export default function* rootSaga() {
     yield all([
         takeEvery(PlantTypes.GET_PLANTS, GET_PLANTS),
         takeEvery(PlantTypes.FILTER, FILTER),
+        takeEvery(PlantTypes.SEARCH, SEARCH),
     ]);
 }
