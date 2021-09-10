@@ -46,7 +46,7 @@ export function* FILTER({option}: Params) {
     }
 }
 
-export function* SEARCH({term}: Params) {
+export function* SEARCH({term, option}: Params) {
     yield put(creator.setState({isLoading: true}));
 
     try {
@@ -54,7 +54,17 @@ export function* SEARCH({term}: Params) {
             yield put(creator.setState({listFiltered: []}));
             return;
         }
-        const {data} = yield call(api, `plants?name_like=${term}`);
+        let data = [];
+        if (option) {
+            const response = yield call(
+                api,
+                `plants?name_like=${term}&environments_like=${option}`,
+            );
+            data = response.data;
+        } else {
+            const response = yield call(api, `plants?name_like=${term}`);
+            data = response.data;
+        }
 
         yield put(creator.setState({listFiltered: data}));
     } catch (e) {
