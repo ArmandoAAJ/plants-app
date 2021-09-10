@@ -8,7 +8,7 @@ import {PlantProps} from '../../config/types';
 import {
     Container,
     Content,
-    CardContent,
+    CardContent, 
     Card,
     SVG,
     Info,

@@ -54,12 +54,9 @@ export function* SEARCH({term}: Params) {
             yield put(creator.setState({listFiltered: []}));
             return;
         }
-        const {plants} = yield select((state) => state);
-        let newArray = [];
+        const {data} = yield call(api, `plants?name_like=${term}`);
 
-        newArray = plants.list.filter((p: PlantProps) => p.name === term);
-
-        yield put(creator.setState({listFiltered: newArray}));
+        yield put(creator.setState({listFiltered: data}));
     } catch (e) {
         console.log(e);
     } finally {
