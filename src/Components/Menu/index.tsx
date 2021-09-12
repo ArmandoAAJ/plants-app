@@ -15,15 +15,8 @@ import {
     ContentButton,
 } from './styles';
 
-import creator from '../../store/ducks/listPlants';
-
-export const Menu = () => {
-    const dispatch = useDispatch();
+export const Menu = ({choiceOption}) => {
     const [option, setOption] = useState('');
-
-    useEffect(() => {
-        dispatch(creator.filter(option));
-    }, [option]);
 
     interface handleFilterProps {
         value: String;
@@ -32,9 +25,11 @@ export const Menu = () => {
     const handleFilter = ({value}: handleFilterProps) => {
         if (value !== option) {
             setOption(`${value}`);
-            return;
+            choiceOption(value);
+        } else {
+            setOption('');
+            choiceOption('');
         }
-        setOption('');
     };
 
     return (
