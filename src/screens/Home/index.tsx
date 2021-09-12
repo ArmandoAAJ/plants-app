@@ -11,8 +11,10 @@ import {ListItem} from './ListItem';
 import creator from '../../store/ducks/listPlants';
 
 import {Container, List} from './styles';
+import {Value} from 'react-native-reanimated';
 
 export const Home: React.FC = (props) => {
+    const [optionMenu, setOptionMenu] = useState('');
     const dispatch = useDispatch();
     const [isLoading, list, listFiltered] = useSelector(
         (state: RootStateOrAny) => [
@@ -22,6 +24,11 @@ export const Home: React.FC = (props) => {
         ],
     );
     const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        dispatch(creator.filter(optionMenu));
+    }, [optionMenu]);
 
     const load = useCallback(() => {
         if (isLoading) return;
@@ -33,10 +40,14 @@ export const Home: React.FC = (props) => {
 
     useEffect(() => load(), []);
 
+    const handleOption = (value: string) => {
+        setOptionMenu(value);
+    };
+
     return (
         <Container>
             <Header search bag />
-            <Menu />
+            <Menu choiceOption={(value: string) => handleOption(value)} />
             <List>
                 {loading && <Load />}
                 {!loading && (
