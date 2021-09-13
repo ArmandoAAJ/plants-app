@@ -8,18 +8,15 @@ interface PropsHeader {
     back?: boolean;
     search?: boolean;
     bag?: boolean;
+    choiceOption: (value: string) => void;
 }
 
-export const Header = ({back, search, bag}: PropsHeader) => {
+export const Header = ({back, search, bag, choiceOption}: PropsHeader) => {
     const dispatch = useDispatch();
     const [term, setTerm] = useState('');
     const navigation = useNavigation();
     const handleBack = () => {
         navigation.navigate('Home');
-    };
-
-    const handleSearch = () => {
-        dispatch(creator.search(term));
     };
 
     const handleBag = () => {};
@@ -38,7 +35,7 @@ export const Header = ({back, search, bag}: PropsHeader) => {
                             value={term}
                             placeholder="Pesquisar"
                         />
-                        <Button onPress={() => handleSearch()}>
+                        <Button onPress={() => choiceOption(term)}>
                             <Icon name="search" padding={5} />
                         </Button>
                     </>
