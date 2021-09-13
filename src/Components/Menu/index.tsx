@@ -15,12 +15,16 @@ import {
     ContentButton,
 } from './styles';
 
-export const Menu = ({choiceOption}) => {
-    const [option, setOption] = useState('');
+interface PropsMenu {
+    choiceOption: (value: string) => void;
+}
 
-    interface handleFilterProps {
-        value: String;
-    }
+interface handleFilterProps {
+    value: string;
+}
+
+export const Menu: React.FC<PropsMenu> = ({choiceOption}) => {
+    const [option, setOption] = useState('');
 
     const handleFilter = ({value}: handleFilterProps) => {
         if (value !== option) {
