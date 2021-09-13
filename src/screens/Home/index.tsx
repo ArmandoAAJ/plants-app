@@ -15,6 +15,7 @@ import {Value} from 'react-native-reanimated';
 
 export const Home: React.FC = (props) => {
     const [optionMenu, setOptionMenu] = useState('');
+    const [term, setTerm] = useState('');
     const dispatch = useDispatch();
     const [isLoading, list, listFiltered] = useSelector(
         (state: RootStateOrAny) => [
@@ -25,6 +26,9 @@ export const Home: React.FC = (props) => {
     );
     const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        dispatch(creator.search(term, optionMenu));
+    }, [term]);
 
     useEffect(() => {
         dispatch(creator.filter(optionMenu));
@@ -44,9 +48,17 @@ export const Home: React.FC = (props) => {
         setOptionMenu(value);
     };
 
+    const handleTerm = (value: string) => {
+        setTerm(value);
+    };
+
     return (
         <Container>
-            <Header search bag />
+            <Header
+                search
+                bag
+                choiceOption={(value: string) => handleTerm(value)}
+            />
             <Menu choiceOption={(value: string) => handleOption(value)} />
             <List>
                 {loading && <Load />}
