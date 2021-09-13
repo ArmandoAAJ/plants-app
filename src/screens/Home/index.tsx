@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, View, Image} from 'react-native';
 
 import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
 
@@ -11,8 +11,8 @@ import {ListItem} from './ListItem';
 import creator from '../../store/ducks/listPlants';
 
 import {Container, List} from './styles';
-import {Value} from 'react-native-reanimated';
-
+import noDataIMG from '../../assets/nodata.png';
+const UriNodata = Image.resolveAssetSource(noDataIMG).uri;
 export const Home: React.FC = (props) => {
     const [optionMenu, setOptionMenu] = useState('');
     const [term, setTerm] = useState('');
@@ -31,6 +31,7 @@ export const Home: React.FC = (props) => {
     }, [term]);
 
     useEffect(() => {
+        if (term !== '' && optionMenu === '') setTerm('');
         dispatch(creator.filter(optionMenu));
     }, [optionMenu]);
 
@@ -64,7 +65,28 @@ export const Home: React.FC = (props) => {
                 {loading && <Load />}
                 {!loading && (
                     <FlatList
-                        data={listFiltered.length > 0 ? listFiltered : list}
+                        ListEmptyComponent={() => (
+                            <View
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    paddingTop: 250,
+                                }}>
+                                <Image
+                                    style={{width: 250, height: 200}}
+                                    source={{
+                                        uri: UriNodata,
+                                    }}
+                                />
+                            </View>
+                        )}
+                        data={
+                            (listFiltered && term !== '') ||
+                            listFiltered.length > 0
+                                ? listFiltered
+                                : list
+                        }
                         renderItem={({item}) => <ListItem plant={item} />}
                         keyExtractor={(item) => String(item.id)}
                     />
