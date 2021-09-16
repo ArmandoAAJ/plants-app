@@ -8,7 +8,7 @@ interface PropsHeader {
     back?: boolean;
     search?: boolean;
     bag?: boolean;
-    choiceOption: (value: string) => void;
+    choiceOption?: (value: string) => void;
 }
 
 export const Header = ({back, search, bag, choiceOption}: PropsHeader) => {
