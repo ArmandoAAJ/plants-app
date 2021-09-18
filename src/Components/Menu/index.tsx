@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-
+import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
 
 import {
@@ -24,6 +24,7 @@ interface handleFilterProps {
 }
 
 export const Menu: React.FC<PropsMenu> = ({choiceOption}) => {
+    const navigation = useNavigation();
     const [option, setOption] = useState('');
 
     const handleFilter = ({value}: handleFilterProps) => {
@@ -34,6 +35,10 @@ export const Menu: React.FC<PropsMenu> = ({choiceOption}) => {
             setOption('');
             choiceOption('');
         }
+    };
+
+    const handdleOpenCart = () => {
+        navigation.navigate('Cart');
     };
 
     return (
@@ -54,7 +59,7 @@ export const Menu: React.FC<PropsMenu> = ({choiceOption}) => {
                 </Item>
             </List>
             <ContentButton>
-                <ButtonCart>
+                <ButtonCart onPress={() => handdleOpenCart()}>
                     <Icon name="shopping-bag" />
                 </ButtonCart>
             </ContentButton>
