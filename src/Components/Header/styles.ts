@@ -47,3 +47,10 @@ export const TextInput = styled.TextInput.attrs({
     font-weight: 400;
     margin-right: 5px;
 `;
+
+export const Text = styled.Text`
+    text-align: center;
+    font-size: ${Theme.text.large};
+    color: ${Theme.pallet.primary.text_color};
+    margin-right: 50%;
+`;

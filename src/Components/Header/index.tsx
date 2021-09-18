@@ -1,20 +1,26 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
-import creator from '../../store/ducks/listPlants';
-import {Container, Right, Icon, Button, TextInput} from './styles';
+import {Container, Right, Icon, Button, TextInput, Text} from './styles';
 
 interface PropsHeader {
     back?: boolean;
     search?: boolean;
     bag?: boolean;
     choiceOption?: (value: string) => void;
+    title?: string;
 }
 
-export const Header = ({back, search, bag, choiceOption}: PropsHeader) => {
-    const dispatch = useDispatch();
+export const Header = ({
+    back,
+    search,
+    bag,
+    choiceOption,
+    title,
+}: PropsHeader) => {
     const [term, setTerm] = useState('');
     const navigation = useNavigation();
+
     const handleBack = () => {
         navigation.navigate('Home');
     };
@@ -28,6 +34,7 @@ export const Header = ({back, search, bag, choiceOption}: PropsHeader) => {
             </Button>
 
             <Right>
+                {title && <Text>{title}</Text>}
                 {search && (
                     <>
                         <TextInput
@@ -35,7 +42,8 @@ export const Header = ({back, search, bag, choiceOption}: PropsHeader) => {
                             value={term}
                             placeholder="Pesquisar"
                         />
-                        <Button onPress={() => choiceOption(term)}>
+                        <Button
+                            onPress={() => choiceOption && choiceOption(term)}>
                             <Icon name="search" padding={5} />
                         </Button>
                     </>
