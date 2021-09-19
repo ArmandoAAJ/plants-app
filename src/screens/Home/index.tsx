@@ -9,6 +9,7 @@ import {Menu} from '../../Components/Menu';
 import {ListItem} from './ListItem';
 
 import creator from '../../store/ducks/listPlants';
+import creatorCart from '../../store/ducks/cart';
 
 import {Container, List} from './styles';
 import noDataIMG from '../../assets/nodata.png';
@@ -17,13 +18,15 @@ export const Home: React.FC = (props) => {
     const [optionMenu, setOptionMenu] = useState('');
     const [term, setTerm] = useState('');
     const dispatch = useDispatch();
-    const [isLoading, list, listFiltered] = useSelector(
+    const [isLoading, list, listFiltered, cart] = useSelector(
         (state: RootStateOrAny) => [
             state.plants.isLoading,
             state.plants.list,
             state.plants.listFiltered,
+            state.cart.cart,
         ],
     );
+    console.log(cart);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -51,6 +54,10 @@ export const Home: React.FC = (props) => {
 
     const handleTerm = (value: string) => {
         setTerm(value);
+    };
+
+    const handleAddToCart = (value: number) => {
+        dispatch(creatorCart.addCart(value));
     };
 
     return (
@@ -87,7 +94,12 @@ export const Home: React.FC = (props) => {
                                 ? listFiltered
                                 : list
                         }
-                        renderItem={({item}) => <ListItem plant={item} />}
+                        renderItem={({item}) => (
+                            <ListItem
+                                plant={item}
+                                addToCart={(value) => handleAddToCart(value)}
+                            />
+                        )}
                         keyExtractor={(item) => String(item.id)}
                     />
                 )}

@@ -7,9 +7,10 @@ import {PlantProps} from '../../../config/types';
 
 interface PropsItem {
     plant: PlantProps;
+    addToCart: (id) => void;
 }
 
-export const ListItem = ({plant}: PropsItem) => {
+export const ListItem = ({plant, addToCart}: PropsItem) => {
     const navigation = useNavigation();
     return (
         <Container>
@@ -17,7 +18,7 @@ export const ListItem = ({plant}: PropsItem) => {
                 <SVG uri={plant.photo} />
                 <Name>{plant.name}</Name>
             </Card>
-            <AddToCart>
+            <AddToCart onPress={() => addToCart(plant.id)}>
                 <Icon name="shopping-bag" />
             </AddToCart>
         </Container>
