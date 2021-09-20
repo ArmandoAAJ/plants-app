@@ -6,6 +6,7 @@ export interface PlantProps {
     water_tips: string;
     photo: string;
     environments: [string];
+    quantity?: number;
     frequency: {
         times: number;
         repeat_every: string;
