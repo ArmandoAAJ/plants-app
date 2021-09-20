@@ -1,13 +1,25 @@
-import React from "react";
+import React from 'react';
 
-import { Container, Lottie } from "./styles";
+import {Container, Lottie} from './styles';
 
-import loadAnimation from "../../assets/load.json";
+import animationHome from '../../assets/load.json';
+import animationCart from '../../assets/noPlantCart.json';
+import animationNoData from '../../assets/noData.json';
 
-export const Load: React.FC = () => {
-  return (
-    <Container>
-      <Lottie source={loadAnimation} autoPlay loop />
-    </Container>
-  );
+interface propsLoad {
+    type: string;
+}
+
+export function animation(value: string) {
+    if (value === 'cart') return animationCart;
+    if (value === 'noData') return animationNoData;
+    return animationHome;
+}
+
+export const Load: React.FC<propsLoad> = ({type}) => {
+    return (
+        <Container>
+            <Lottie source={animation(type)} autoPlay loop={false} />
+        </Container>
+    );
 };
