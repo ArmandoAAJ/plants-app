@@ -63,7 +63,6 @@ export const Home: React.FC = (props) => {
         <Container>
             <Header
                 search
-                bag
                 choiceOption={(value: string) => handleTerm(value)}
             />
             <Menu choiceOption={(value: string) => handleOption(value)} />
