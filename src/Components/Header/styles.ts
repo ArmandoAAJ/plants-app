@@ -52,5 +52,5 @@ export const Text = styled.Text`
     text-align: center;
     font-size: ${Theme.text.large}px;
     color: ${Theme.pallet.primary.text_color};
-    margin-right: 50%;
+    font-weight: bold;
 `;

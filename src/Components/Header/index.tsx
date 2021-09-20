@@ -9,6 +9,7 @@ interface PropsHeader {
     bag?: boolean;
     choiceOption?: (value: string) => void;
     title?: string;
+    total?: number;
 }
 
 export const Header = ({
@@ -17,6 +18,7 @@ export const Header = ({
     bag,
     choiceOption,
     title,
+    total,
 }: PropsHeader) => {
     const [term, setTerm] = useState('');
     const navigation = useNavigation();
@@ -25,7 +27,9 @@ export const Header = ({
         navigation.navigate('Home');
     };
 
-    const handleBag = () => {};
+    const handleBag = () => {
+        navigation.navigate('Cart');
+    };
 
     return (
         <Container>
@@ -34,7 +38,10 @@ export const Header = ({
             </Button>
 
             <Right>
-                {title && <Text>{title}</Text>}
+                {title && <Text style={{marginRight: '40%'}}>{title}</Text>}
+                {total && total !== undefined ? (
+                    <Text>{'$ ' + total.toFixed(2)}</Text>
+                ) : null}
                 {search && (
                     <>
                         <TextInput
