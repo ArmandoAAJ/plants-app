@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React from 'react';
 import {
     Container,
     SVG,
@@ -9,20 +9,35 @@ import {
     Icon,
 } from './styles';
 
-const Product: React.FC = ({item, addToCart, removeToCart}) => {
+import {PlantProps} from '../../config/types';
+
+interface PropsProduct {
+    product: PlantProps;
+    addToCart: (id: number) => void;
+    removeToCart: (id: number) => void;
+}
+
+const Product: React.FC<PropsProduct> = ({
+    product,
+    addToCart,
+    removeToCart,
+}) => {
+    const icon = product.quantity && product.quantity < 2 ? 'delete' : 'remove';
+    const bounce = product.id % 2 !== 0 ? 'bounceInLeft' : 'bounceInRight';
+    const duration = product.id * 1000;
     return (
-        <Container>
-            <SVG uri={item.photo} />
+        <Container animation={`${bounce}`} duration={duration}>
+            <SVG uri={product.photo} />
             <Content>
-                <Name>{item.name}</Name>
+                <Name>{product.name}</Name>
                 <CardButtons>
                     <Actions
-                        onPress={() => addToCart(5)}
+                        onPress={() => removeToCart(product.id)}
                         style={{
                             borderTopLeftRadius: 5,
                             borderBottomLeftRadius: 5,
                         }}>
-                        <Icon name="add" />
+                        <Icon name={`${icon}`} />
                     </Actions>
                     <Actions
                         disabled
@@ -32,15 +47,15 @@ const Product: React.FC = ({item, addToCart, removeToCart}) => {
                             borderLeftColor: '#000',
                             borderLeftWidth: 0.2,
                         }}>
-                        <Name>5</Name>
+                        <Name>{product.quantity}</Name>
                     </Actions>
                     <Actions
-                        onPress={removeToCart}
+                        onPress={() => addToCart(product.id)}
                         style={{
                             borderTopRightRadius: 5,
                             borderBottomRightRadius: 5,
                         }}>
-                        <Icon name="remove" />
+                        <Icon name="add" />
                     </Actions>
                 </CardButtons>
             </Content>

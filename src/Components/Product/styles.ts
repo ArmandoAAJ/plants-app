@@ -1,9 +1,10 @@
 import styled from 'styled-components/native';
+import * as Animatable from 'react-native-animatable';
 import {MaterialIcons} from '@expo/vector-icons';
 import Theme from '../../../theme.json';
 import {SvgFromUri} from 'react-native-svg';
 
-export const Container = styled.View`
+export const Container = styled(Animatable.View)`
     flex-direction: row;
     justify-content: space-around;
     height: 150px;
