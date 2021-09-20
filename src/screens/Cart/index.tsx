@@ -1,13 +1,15 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {FlatList} from 'react-native';
 import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
 
 import creator from '../../store/ducks/cart';
 
+import {Load} from '../../Components/Load';
 import {Header} from '../../Components/Header';
 import Product from '../../Components/Product';
 
-import {Container} from './styles';
+import {Container, Content, Text} from './styles';
+import {PlantProps} from '../../config/types';
 
 export const Cart: React.FC = () => {
     const dispatch = useDispatch();
@@ -19,7 +21,6 @@ export const Cart: React.FC = () => {
     const load = useCallback(() => {
         if (isLoading) return;
         dispatch(creator.getCart());
-        handleAddProduct(1);
     }, []);
 
     useEffect(() => load(), []);
@@ -28,18 +29,38 @@ export const Cart: React.FC = () => {
         dispatch(creator.addCart(value));
     };
 
+    const handleRemoveProduct = (value: number) => {
+        dispatch(creator.removeCart(value));
+    };
+
+    const totalCart = useMemo(() => {
+        const total = cart.reduce((acumulator: number, item: PlantProps) => {
+            return acumulator + item.price * (item.quantity || 1);
+        }, 0);
+        return total;
+    }, [cart]);
+
     return (
         <Container>
-            <Header back title="My Cart" />
+            <Header back title="My Cart" total={totalCart} />
             <FlatList
                 data={cart}
+                ListEmptyComponent={() => (
+                    <Content>
+                        <Load type="cart" />
+                        <Text>The cart is empty.</Text>
+                    </Content>
+                )}
                 renderItem={({item}) => (
                     <Product
+                        removeToCart={(value: number) =>
+                            handleRemoveProduct(value)
+                        }
                         addToCart={(value: number) => handleAddProduct(value)}
-                        item={item}
+                        product={item}
                     />
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => String(item.id)}
             />
         </Container>
     );
