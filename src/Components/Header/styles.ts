@@ -17,8 +17,12 @@ export const Right = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
-    width: 70%;
+`;
+
+export const Middle = styled.View`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 `;
 
 interface IconProps {
@@ -38,14 +42,13 @@ export const TextInput = styled.TextInput.attrs({
     maxLength: 20,
     placeholderTextColor: Theme.pallet.secondary.text_color,
 })`
-    width: 70%;
     height: 25px;
     background-color: ${Theme.pallet.secondary.color};
     border-radius: 5px;
     padding: 0 10px;
     color: ${Theme.pallet.primary.text_color};
     font-weight: 400;
-    margin-right: 5px;
+    width: 170px;
 `;
 
 export const Text = styled.Text`
