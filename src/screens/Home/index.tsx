@@ -12,8 +12,7 @@ import creator from '../../store/ducks/listPlants';
 import creatorCart from '../../store/ducks/cart';
 
 import {Container, List} from './styles';
-import noDataIMG from '../../assets/nodata.png';
-const UriNodata = Image.resolveAssetSource(noDataIMG).uri;
+
 export const Home: React.FC = (props) => {
     const [optionMenu, setOptionMenu] = useState('');
     const [term, setTerm] = useState('');
@@ -26,7 +25,7 @@ export const Home: React.FC = (props) => {
             state.cart.cart,
         ],
     );
-    console.log(cart);
+
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -69,7 +68,7 @@ export const Home: React.FC = (props) => {
             />
             <Menu choiceOption={(value: string) => handleOption(value)} />
             <List>
-                {loading && <Load />}
+                {loading && <Load type="home" />}
                 {!loading && (
                     <FlatList
                         ListEmptyComponent={() => (
@@ -78,14 +77,9 @@ export const Home: React.FC = (props) => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    paddingTop: 250,
+                                    marginTop: '50%',
                                 }}>
-                                <Image
-                                    style={{width: 250, height: 200}}
-                                    source={{
-                                        uri: UriNodata,
-                                    }}
-                                />
+                                <Load type="noData" />
                             </View>
                         )}
                         data={
