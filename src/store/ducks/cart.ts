@@ -7,6 +7,7 @@ const {Types, Creators} = createActions({
     setState: ['payload'],
     getCart: [],
     addCart: ['id'],
+    removeCart: ['id'],
 });
 
 export const CartTypes = Types;
