@@ -3,9 +3,9 @@ import {FlatList, View, Image} from 'react-native';
 
 import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
 
-import {Load} from '../../Components/Load';
-import {Header} from '../../Components/Header';
-import {Menu} from '../../Components/Menu';
+import {Load} from '../../components/Load';
+import {Header} from '../../components/Header';
+import {Menu} from '../../components/Menu';
 import {ListItem} from './ListItem';
 
 import creator from '../../store/ducks/listPlants';
@@ -62,6 +62,7 @@ export const Home: React.FC = (props) => {
     return (
         <Container>
             <Header
+                back
                 search
                 choiceOption={(value: string) => handleTerm(value)}
             />
