@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, View, Image} from 'react-native';
+import {FlatList, View, Animated} from 'react-native';
 
 import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
 
@@ -14,6 +14,11 @@ import creatorCart from '../../store/ducks/cart';
 import {Container, List} from './styles';
 
 export const Home: React.FC = (props) => {
+    const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+    const y = new Animated.Value(0);
+    const onScroll = Animated.event([{nativeEvent: {contentOffset: {y}}}], {
+        useNativeDriver: true,
+    });
     const [optionMenu, setOptionMenu] = useState('');
     const [term, setTerm] = useState('');
     const dispatch = useDispatch();
@@ -70,7 +75,9 @@ export const Home: React.FC = (props) => {
             <List>
                 {loading && <Load type="home" />}
                 {!loading && (
-                    <FlatList
+                    <AnimatedFlatList
+                        scrollEventThrottle={16}
+                        {...{onScroll}}
                         ListEmptyComponent={() => (
                             <View
                                 style={{
@@ -88,8 +95,10 @@ export const Home: React.FC = (props) => {
                                 ? listFiltered
                                 : list
                         }
-                        renderItem={({item}) => (
+                        renderItem={({item, index}) => (
                             <ListItem
+                                index={index}
+                                y={y}
                                 plant={item}
                                 addToCart={(value) => handleAddToCart(value)}
                             />
