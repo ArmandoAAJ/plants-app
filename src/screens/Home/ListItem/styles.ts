@@ -1,30 +1,28 @@
 import styled from 'styled-components/native';
+import {Animated} from 'react-native';
 import {SvgFromUri} from 'react-native-svg';
 import {MaterialIcons} from '@expo/vector-icons';
 
 import Theme from '../../../../theme.json';
-export const Container = styled.View``;
 
-export const Card = styled.TouchableOpacity`
-    height: 200px;
+export const Container = styled(Animated.View)`
     border-radius: 25px;
     background-color: ${Theme.pallet.secondary.color};
-    margin: 100px 50px 0 50px;
+    align-self: center;
+    margin-vertical: 15px;
+    align-items: center;
 `;
 
+export const Card = styled.TouchableOpacity``;
+
 export const SVG = styled(SvgFromUri).attrs({
-    height: '100%',
+    height: '60%',
     width: '100%',
-})`
-    position: absolute;
-    top: -80px;
-`;
+})``;
 
 export const Name = styled.Text`
     text-align: center;
     width: 100%;
-    position: absolute;
-    bottom: 55px;
     color: ${Theme.pallet.primary.text_color};
     font-weight: bold;
     font-size: ${Theme.text.large}px;
