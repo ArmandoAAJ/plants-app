@@ -13,16 +13,10 @@ export const Container = styled.View`
     margin: 10px 20px;
 `;
 
-export const Right = styled.View`
-    display: flex;
+export const Content = styled.View`
     flex-direction: row;
     align-items: center;
-`;
-
-export const Middle = styled.View`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    justify-content: flex-end;
 `;
 
 interface IconProps {
@@ -46,9 +40,10 @@ export const TextInput = styled.TextInput.attrs({
     background-color: ${Theme.pallet.secondary.color};
     border-radius: 5px;
     padding: 0 10px;
+    margin-right: 10px;
     color: ${Theme.pallet.primary.text_color};
     font-weight: 400;
-    width: 170px;
+    width: 70%;
 `;
 
 export const Text = styled.Text`

@@ -2,15 +2,7 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {
-    Container,
-    Right,
-    Icon,
-    Button,
-    TextInput,
-    Text,
-    Middle,
-} from './styles';
+import {Container, Content, Icon, Button, TextInput, Text} from './styles';
 
 interface PropsHeader {
     back?: boolean;
@@ -27,7 +19,7 @@ export const Header = ({
     choiceOption,
     title,
     total,
-    bag
+    bag,
 }: PropsHeader) => {
     const [term, setTerm] = useState('');
     const navigation = useNavigation();
@@ -36,23 +28,61 @@ export const Header = ({
         navigation.navigate('Home');
     };
 
-    return (
-        <Container>
+    const handleBag = () => {
+        navigation.navigate('Cart');
+    };
+
+    const backComponent = () => {
+        if (!back) return;
+        return (
             <Button onPress={() => handleBack()}>
                 <Icon name="keyboard-backspace" />
             </Button>
-            <Middle>
-                <Text>{title}</Text>
-            </Middle>
-            <Right>
-                <TextInput />
-                <Icon name="search" padding={15} />
-                {bag && (
-                    <Button onPress={() => handleBag()}>
-                        <Icon name="shopping-bag" />
-                    </Button>
-                )}
-            </Right>
+        );
+    };
+
+    const bagComponent = () => {
+        if (!bag) return;
+        return (
+            <Button onPress={() => handleBag()}>
+                <Icon name="shopping-bag" />
+            </Button>
+        );
+    };
+
+    const searchComponent = () => {
+        if (!search) return;
+        return (
+            <Content>
+                <TextInput
+                    onChangeText={setTerm}
+                    value={term}
+                    placeholder="Pesquisar"
+                />
+                <Button onPress={() => choiceOption && choiceOption(term)}>
+                    <Icon name="search" padding={5} />
+                </Button>
+            </Content>
+        );
+    };
+
+    const titleComponent = () => {
+        if (!title) return;
+        return <Text>{title}</Text>;
+    };
+
+    const totalComponent = () => {
+        if (!total) return;
+        return <Text>$ {total.toFixed(2)}</Text>;
+    };
+
+    return (
+        <Container>
+            {backComponent()}
+            {searchComponent()}
+            {titleComponent()}
+            {bagComponent()}
+            {totalComponent()}
         </Container>
     );
 };
