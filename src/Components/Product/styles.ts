@@ -21,13 +21,19 @@ export const SVG = styled(SvgFromUri).attrs({
 export const Content = styled.View`
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin: 20px 0;
+    justify-content: space-around;
+    margin: 5px 0;
 `;
 
 export const Name = styled.Text`
     font-size: ${Theme.text.large * 1.5}px;
     color: ${Theme.pallet.primary.text_color};
+`;
+
+export const Price = styled.Text`
+    font-size: ${Theme.text.normal}px;
+    color: ${Theme.pallet.secondary.text_color};
+    font-weight: bold;
 `;
 
 export const CardButtons = styled.View`

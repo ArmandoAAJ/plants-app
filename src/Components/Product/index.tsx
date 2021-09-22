@@ -4,6 +4,7 @@ import {
     SVG,
     Content,
     Name,
+    Price,
     CardButtons,
     Actions,
     Icon,
@@ -24,12 +25,13 @@ const Product: React.FC<PropsProduct> = ({
 }) => {
     const icon = product.quantity && product.quantity < 2 ? 'delete' : 'remove';
     const bounce = product.id % 2 !== 0 ? 'bounceInLeft' : 'bounceInRight';
-    const duration = product.id * 1000;
+    const duration = product.id * 100 + 1500;
     return (
         <Container animation={`${bounce}`} duration={duration}>
             <SVG uri={product.photo} />
             <Content>
                 <Name>{product.name}</Name>
+                <Price>$ {product.price}</Price>
                 <CardButtons>
                     <Actions
                         onPress={() => removeToCart(product.id)}
