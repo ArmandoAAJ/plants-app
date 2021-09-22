@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigatorScreenParams} from '@react-navigation/native';
 
-import {Header} from '../../Components/Header';
+import {Header} from '../../components/Header';
 
 import {PlantProps} from '../../config/types';
 
