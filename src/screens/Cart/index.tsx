@@ -4,9 +4,9 @@ import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
 
 import creator from '../../store/ducks/cart';
 
-import {Load} from '../../Components/Load';
-import {Header} from '../../Components/Header';
-import Product from '../../Components/Product';
+import {Load} from '../../components/Load';
+import {Header} from '../../components/Header';
+import Product from '../../components/Product';
 
 import {Container, Content, Text} from './styles';
 import {PlantProps} from '../../config/types';
