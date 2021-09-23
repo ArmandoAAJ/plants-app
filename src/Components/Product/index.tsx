@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {
     Container,
     SVG,
@@ -26,12 +26,23 @@ const Product: React.FC<PropsProduct> = ({
     const icon = product.quantity && product.quantity < 2 ? 'delete' : 'remove';
     const bounce = product.id % 2 !== 0 ? 'bounceInLeft' : 'bounceInRight';
     const duration = product.id * 100 + 1500;
+
+    const totalInCart = useMemo(() => {
+        if (!product.quantity) return;
+        const newValue = product.price * product.quantity;
+        return newValue.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            style: 'currency',
+            currency: 'BRL',
+        });
+    }, [product.quantity]);
+
     return (
         <Container animation={`${bounce}`} duration={duration}>
             <SVG uri={product.photo} />
             <Content>
                 <Name>{product.name}</Name>
-                <Price>$ {product.price}</Price>
+                <Price>{totalInCart}</Price>
                 <CardButtons>
                     <Actions
                         onPress={() => removeToCart(product.id)}
