@@ -73,7 +73,7 @@ export const Header = ({
 
     const totalComponent = () => {
         if (!total) return;
-        return <Text>$ {total.toFixed(2)}</Text>;
+        return <Text>{total}</Text>;
     };
 
     return (
