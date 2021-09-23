@@ -37,7 +37,11 @@ export const Cart: React.FC = () => {
         const total = cart.reduce((acumulator: number, item: PlantProps) => {
             return acumulator + item.price * (item.quantity || 1);
         }, 0);
-        return total;
+        return total.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            style: 'currency',
+            currency: 'BRL',
+        });
     }, [cart]);
 
     return (
