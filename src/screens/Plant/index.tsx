@@ -1,5 +1,7 @@
 import React from 'react';
-import {NavigatorScreenParams} from '@react-navigation/native';
+
+import creatorCart from '../../store/ducks/cart';
+import {useDispatch} from 'react-redux';
 
 import {Header} from '../../components/Header';
 
@@ -8,7 +10,7 @@ import {PlantProps} from '../../config/types';
 import {
     Container,
     Content,
-    CardContent, 
+    CardContent,
     Card,
     SVG,
     Info,
@@ -26,14 +28,19 @@ interface Plant {
 }
 
 export const Plant = ({route}: any) => {
+    const dispatch = useDispatch();
     const {plant}: Plant = route.params;
+
+    function handleAddToCart(value: number) {
+        dispatch(creatorCart.addCart(value));
+    }
 
     return (
         <Container>
             <Header back bag />
             <Content>
                 <CardContent>
-                    <Card>
+                    <Card onPress={() => handleAddToCart(plant.id)}>
                         <SVG uri={plant.photo} />
                     </Card>
                     <Info>
@@ -76,7 +83,7 @@ export const Plant = ({route}: any) => {
                     <Title top={10}>{plant.about}</Title>
                 </Details>
             </Content>
-            <Button>
+            <Button onPress={() => handleAddToCart(plant.id)}>
                 <ButtonAlign>
                     <Row>
                         <Icon name="shopping-bag" />

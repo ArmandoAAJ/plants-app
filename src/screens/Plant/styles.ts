@@ -103,7 +103,7 @@ export const Icon = styled(MaterialIcons).attrs({
     margin-right: ${(props) => props.padding || 0}px;
 `;
 
-export const ButtonAlign = styled.TouchableOpacity`
+export const ButtonAlign = styled.View`
     width: 100%;
     height: 100%;
     align-items: center;
