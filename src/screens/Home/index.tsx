@@ -9,16 +9,11 @@ import {Menu} from '../../components/Menu';
 import {ListItem} from './ListItem';
 
 import creator from '../../store/ducks/listPlants';
-import creatorCart from '../../store/ducks/cart';
 
 import {Container, List} from './styles';
 
 export const Home: React.FC = (props) => {
-    const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-    const y = new Animated.Value(0);
-    const onScroll = Animated.event([{nativeEvent: {contentOffset: {y}}}], {
-        useNativeDriver: true,
-    });
+    const y = React.useRef(new Animated.Value(0)).current;
     const [optionMenu, setOptionMenu] = useState('');
     const [term, setTerm] = useState('');
     const dispatch = useDispatch();
@@ -60,10 +55,6 @@ export const Home: React.FC = (props) => {
         setTerm(value);
     };
 
-    const handleAddToCart = (value: number) => {
-        dispatch(creatorCart.addCart(value));
-    };
-
     return (
         <Container>
             <Header
@@ -75,9 +66,13 @@ export const Home: React.FC = (props) => {
             <List>
                 {loading && <Load type="home" />}
                 {!loading && (
-                    <AnimatedFlatList
-                        scrollEventThrottle={16}
-                        {...{onScroll}}
+                    <Animated.FlatList
+                        onScroll={Animated.event(
+                            [{nativeEvent: {contentOffset: {y: y}}}],
+                            {
+                                useNativeDriver: true,
+                            },
+                        )}
                         ListEmptyComponent={() => (
                             <View
                                 style={{
@@ -96,12 +91,7 @@ export const Home: React.FC = (props) => {
                                 : list
                         }
                         renderItem={({item, index}) => (
-                            <ListItem
-                                index={index}
-                                y={y}
-                                plant={item}
-                                addToCart={(value) => handleAddToCart(value)}
-                            />
+                            <ListItem index={index} y={y} plant={item} />
                         )}
                         keyExtractor={(item) => String(item.id)}
                     />
