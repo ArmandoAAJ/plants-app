@@ -52,7 +52,7 @@ export const Cart: React.FC = () => {
                 ListEmptyComponent={() => (
                     <Content>
                         <Load type="cart" />
-                        <Text>The cart is empty.</Text>
+                        <Text>Seu carrinho está vazio.</Text>
                     </Content>
                 )}
                 renderItem={({item}) => (
