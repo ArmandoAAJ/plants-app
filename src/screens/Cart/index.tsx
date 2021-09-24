@@ -46,7 +46,7 @@ export const Cart: React.FC = () => {
 
     return (
         <Container>
-            <Header back title="My Cart" total={totalCart} />
+            <Header back title="Meu Carrinho" total={totalCart} />
             <FlatList
                 data={cart}
                 ListEmptyComponent={() => (

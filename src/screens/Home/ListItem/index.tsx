@@ -16,7 +16,6 @@ interface PropsItem {
 }
 
 export const ListItem = ({plant, index, y}: PropsItem) => {
-    console.log(y);
     const dispatch = useDispatch();
     const {height: wHeight, width} = Dimensions.get('window');
     const height = wHeight - 64;
