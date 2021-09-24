@@ -1,19 +1,23 @@
 import React from 'react';
 import {Dimensions, Animated} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
 
-import {Container, Card, Name, AddToCart, SVG, Icon} from './styles';
+import creatorCart from '../../../store/ducks/cart';
+
+import {Container, Card, Name, AddToCart, SVG, Icon, Price} from './styles';
 
 import {PlantProps} from '../../../config/types';
 
 interface PropsItem {
     plant: PlantProps;
-    addToCart: (id: number) => void;
     y: Animated.Value;
     index: number;
 }
 
-export const ListItem = ({plant, addToCart, index, y}: PropsItem) => {
+export const ListItem = ({plant, index, y}: PropsItem) => {
+    console.log(y);
+    const dispatch = useDispatch();
     const {height: wHeight, width} = Dimensions.get('window');
     const height = wHeight - 64;
     const MARGIN = 16;
@@ -37,7 +41,7 @@ export const ListItem = ({plant, addToCart, index, y}: PropsItem) => {
         ),
         position.interpolate({
             inputRange: [isBottom, isAppearing],
-            outputRange: [0, -CARD_HEIGHT / 3],
+            outputRange: [0, -CARD_HEIGHT / 2.5 + MARGIN],
             extrapolate: 'clamp',
         }),
     );
@@ -51,23 +55,41 @@ export const ListItem = ({plant, addToCart, index, y}: PropsItem) => {
         outputRange: [0, 1, 1, 0],
     });
 
+    const handleAddToCart = (value: number) => {
+        dispatch(creatorCart.addCart(value));
+    };
+
     return (
         <Container
             style={[
                 {
+                    marginBottom: 45,
                     opacity,
                     transform: [{translateY}, {scale}],
-                    height: height / 2.5,
+                    height: height / 2.5 - MARGIN,
                     width: (60 / 100) * width,
                 },
             ]}
             key={index}>
             <Card
-                style={{height: height / 2.5, width: (60 / 100) * width}}
+                style={{
+                    height: height / 2.5 - MARGIN,
+                    width: (60 / 100) * width,
+                }}
                 onPress={() => navigation.navigate('Plant', {plant})}>
                 <SVG uri={plant.photo} />
                 <Name>{plant.name}</Name>
+                <Price>
+                    {plant.price.toLocaleString('pt-BR', {
+                        minimumFractionDigits: 2,
+                        style: 'currency',
+                        currency: 'BRL',
+                    })}
+                </Price>
             </Card>
+            <AddToCart onPress={() => handleAddToCart(plant.id)}>
+                <Icon name="add" />
+            </AddToCart>
         </Container>
     );
 };
