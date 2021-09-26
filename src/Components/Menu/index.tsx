@@ -17,13 +17,14 @@ import {
 
 interface PropsMenu {
     choiceOption: (value: string) => void;
+    totalCart: number;
 }
 
 interface handleFilterProps {
     value: string;
 }
 
-export const Menu: React.FC<PropsMenu> = ({choiceOption}) => {
+export const Menu: React.FC<PropsMenu> = ({choiceOption, totalCart}) => {
     const navigation = useNavigation();
     const [option, setOption] = useState('');
 
@@ -60,7 +61,15 @@ export const Menu: React.FC<PropsMenu> = ({choiceOption}) => {
             </List>
             <ContentButton>
                 <ButtonCart onPress={() => handdleOpenCart()}>
-                    <Icon name="shopping-bag" />
+                    {totalCart < 1 ? (
+                        <Icon name="shopping-bag" />
+                    ) : (
+                        <Text
+                            style={{
+                                transform: [{rotate: '0deg'}],
+                            }}
+                            color>{`${totalCart}`}</Text>
+                    )}
                 </ButtonCart>
             </ContentButton>
         </Container>
