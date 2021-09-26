@@ -3,6 +3,21 @@ import creator, {CartTypes} from '../ducks/cart';
 
 import {PlantProps} from '../../config/types';
 
+interface PropsAddNewProduct {
+    id: number;
+    list: [PlantProps];
+    cart: [PlantProps];
+}
+
+interface PropsRemoveProduct {
+    id: number;
+    cart: [PlantProps];
+}
+
+interface PropsIdProduct {
+    id: number;
+}
+
 export function* GET_CART() {
     yield put(creator.setState({isLoading: true}));
     try {
@@ -13,12 +28,6 @@ export function* GET_CART() {
     } finally {
         yield put(creator.setState({isLoading: false}));
     }
-}
-
-interface PropsAddNewProduct {
-    id: number;
-    list: [PlantProps];
-    cart: [PlantProps];
 }
 
 export function addNewProduct({id, list, cart}: PropsAddNewProduct) {
@@ -57,7 +66,7 @@ export function addNewProduct({id, list, cart}: PropsAddNewProduct) {
     return newCart;
 }
 
-export function* ADD_CART({id}) {
+export function* ADD_CART({id}: PropsIdProduct) {
     yield put(creator.setState({isLoading: true}));
     try {
         const {list} = yield select((state) => state.plants);
@@ -67,7 +76,6 @@ export function* ADD_CART({id}) {
         const newCart = addNewProduct({id, list, cart});
 
         yield put(creator.setState({cart: newCart}));
-
     } catch (e) {
         console.log(e);
     } finally {
@@ -75,7 +83,7 @@ export function* ADD_CART({id}) {
     }
 }
 
-export function removeProduct({id, cart}) {
+export function removeProduct({id, cart}: PropsRemoveProduct) {
     let [product] = cart.filter((cart) => cart.id === id && cart.quantity > 1);
 
     if (product) {
@@ -95,7 +103,7 @@ export function removeProduct({id, cart}) {
     return newCart;
 }
 
-export function* REMOVE_CART({id}) {
+export function* REMOVE_CART({id}: PropsIdProduct) {
     yield put(creator.setState({isLoading: true}));
     try {
         const {list} = yield select((state) => state.plants);
@@ -105,7 +113,6 @@ export function* REMOVE_CART({id}) {
         const newCart = removeProduct({id, cart});
 
         yield put(creator.setState({cart: newCart}));
-
     } catch (e) {
         console.log(e);
     } finally {
