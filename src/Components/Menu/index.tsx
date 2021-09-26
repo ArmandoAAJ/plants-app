@@ -49,13 +49,13 @@ export const Menu: React.FC<PropsMenu> = ({choiceOption}) => {
             </Content>
             <List>
                 <Item onPress={() => handleFilter({value: 'indoor'})}>
-                    <Text color={option === 'indoor'}>Indoor</Text>
+                    <Text color={option === 'indoor'}>Iterior</Text>
                 </Item>
                 <Item onPress={() => handleFilter({value: 'outdoor'})}>
-                    <Text color={option === 'outdoor'}>Outdoor</Text>
+                    <Text color={option === 'outdoor'}>Exterior</Text>
                 </Item>
                 <Item onPress={() => handleFilter({value: 'garden'})}>
-                    <Text color={option === 'garden'}>Garden</Text>
+                    <Text color={option === 'garden'}>Jardim</Text>
                 </Item>
             </List>
             <ContentButton>
