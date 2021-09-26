@@ -55,13 +55,14 @@ export const Cart: React.FC = () => {
                         <Text>Seu carrinho está vazio.</Text>
                     </Content>
                 )}
-                renderItem={({item}) => (
+                renderItem={({item, index}) => (
                     <Product
                         removeToCart={(value: number) =>
                             handleRemoveProduct(value)
                         }
                         addToCart={(value: number) => handleAddProduct(value)}
                         product={item}
+                        index={index}
                     />
                 )}
                 keyExtractor={(item) => String(item.id)}
