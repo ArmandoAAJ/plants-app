@@ -67,6 +67,7 @@ interface PropsTitle {
     size?: number;
     top?: number;
     left?: number;
+    bold?: string;
 }
 
 export const Title = styled.Text<PropsTitle>`
@@ -74,10 +75,12 @@ export const Title = styled.Text<PropsTitle>`
         props.color
             ? Theme.pallet.primary.text_color
             : Theme.pallet.secondary.text_color};
-    font-size: ${(props) => (props.size ? props.size : Theme.text.small)}px;
+    font-size: ${(props) =>
+        props.size ? props.size : Theme.text.small * 1.2}px;
     margin-top: ${(props) => props.top || 0}px;
     margin-left: ${(props) => props.left || 0}px;
     line-height: 25px;
+    font-weight: ${({bold}) => bold || 'normal'};
 `;
 
 export const Button = styled.TouchableOpacity`
