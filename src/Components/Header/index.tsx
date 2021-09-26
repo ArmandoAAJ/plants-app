@@ -13,14 +13,14 @@ interface PropsHeader {
     total?: number;
 }
 
-export const Header = ({
+export const Header: React.FC<PropsHeader> = ({
     back,
     search,
     choiceOption,
     title,
     total,
     bag,
-}: PropsHeader) => {
+}) => {
     const [term, setTerm] = useState('');
     const navigation = useNavigation();
 
