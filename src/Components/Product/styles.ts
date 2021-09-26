@@ -13,6 +13,13 @@ export const Container = styled(Animatable.View)`
     border-radius: 5px;
 `;
 
+export const Button = styled.TouchableOpacity`
+    flex-direction: row;
+    justify-content: space-around;
+    height: 150px;
+    border-radius: 5px;
+`;
+
 export const SVG = styled(SvgFromUri).attrs({
     width: 120,
     height: 150,
