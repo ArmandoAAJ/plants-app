@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, View, Animated} from 'react-native';
+import {View, Animated} from 'react-native';
 
 import {useSelector, useDispatch, RootStateOrAny} from 'react-redux';
 
@@ -62,7 +62,10 @@ export const Home: React.FC = (props) => {
                 search
                 choiceOption={(value: string) => handleTerm(value)}
             />
-            <Menu choiceOption={(value: string) => handleOption(value)} />
+            <Menu
+                choiceOption={(value: string) => handleOption(value)}
+                totalCart={cart.length}
+            />
             <List>
                 {loading && <Load type="home" />}
                 {!loading && (
@@ -91,7 +94,12 @@ export const Home: React.FC = (props) => {
                                 : list
                         }
                         renderItem={({item, index}) => (
-                            <ListItem index={index} y={y} plant={item} />
+                            <ListItem
+                                index={index}
+                                y={y}
+                                plant={item}
+                                cart={cart}
+                            />
                         )}
                         keyExtractor={(item) => String(item.id)}
                     />
