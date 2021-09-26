@@ -12,7 +12,7 @@ import creator from '../../store/ducks/listPlants';
 
 import {Container, List} from './styles';
 
-export const Home: React.FC = (props) => {
+export const Home: React.FC = () => {
     const y = React.useRef(new Animated.Value(0)).current;
     const [optionMenu, setOptionMenu] = useState('');
     const [term, setTerm] = useState('');
