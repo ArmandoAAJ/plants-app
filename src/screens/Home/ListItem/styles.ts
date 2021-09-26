@@ -30,7 +30,9 @@ export const Name = styled.Text`
     font-size: ${Theme.text.large}px;
 `;
 
-export const AddToCart = styled.TouchableOpacity`
+export const AddToCart = styled.TouchableOpacity.attrs({
+    activeOpacity: 0.9
+})`
     align-items: center;
     justify-content: center;
     width: 70px;
@@ -45,6 +47,11 @@ export const Icon = styled(MaterialIcons).attrs({
     color: Theme.pallet.secondary.text_color,
     size: 30,
 })``;
+
+export const AddCart = styled.Text`
+    font-size: 30;
+    color: ${Theme.pallet.secondary.text_color};
+`;
 
 export const Price = styled.Text`
     font-size: ${Theme.text.normal}px;

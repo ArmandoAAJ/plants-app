@@ -5,7 +5,16 @@ import {useDispatch} from 'react-redux';
 
 import creatorCart from '../../../store/ducks/cart';
 
-import {Container, Card, Name, AddToCart, SVG, Icon, Price} from './styles';
+import {
+    Container,
+    Card,
+    Name,
+    AddToCart,
+    SVG,
+    Icon,
+    Price,
+    AddCart,
+} from './styles';
 
 import {PlantProps} from '../../../config/types';
 
@@ -13,15 +22,18 @@ interface PropsItem {
     plant: PlantProps;
     y: Animated.Value;
     index: number;
+    cart: [PlantProps];
 }
 
-export const ListItem = ({plant, index, y}: PropsItem) => {
+export const ListItem = ({plant, index, y, cart}: PropsItem) => {
     const dispatch = useDispatch();
     const {height: wHeight, width} = Dimensions.get('window');
     const height = wHeight - 64;
     const MARGIN = 16;
     const CARD_HEIGHT = height / 2.5 + MARGIN * 2;
     const navigation = useNavigation();
+
+    const plantCart = cart.find((p) => p.id === plant.id);
 
     const position = Animated.subtract(index * CARD_HEIGHT, y);
     const isDisappearing = -CARD_HEIGHT;
@@ -87,7 +99,11 @@ export const ListItem = ({plant, index, y}: PropsItem) => {
                 </Price>
             </Card>
             <AddToCart onPress={() => handleAddToCart(plant.id)}>
-                <Icon name="add" />
+                {plantCart?.quantity ? (
+                    <AddCart>{`${plantCart?.quantity}`}</AddCart>
+                ) : (
+                    <Icon name="add" />
+                )}
             </AddToCart>
         </Container>
     );
