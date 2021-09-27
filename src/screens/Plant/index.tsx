@@ -49,7 +49,7 @@ export const Plant = ({route}: any) => {
                     </Card>
                     <Info>
                         <Collumn>
-                            <Title bold="bold">Watering</Title>
+                            <Title bold="bold">Regar</Title>
                             <Row>
                                 <Title bold="bold" size={22} color>
                                     {plant.frequency.times}
@@ -61,7 +61,7 @@ export const Plant = ({route}: any) => {
                             </Row>
                         </Collumn>
                         <Collumn>
-                            <Title bold="bold">Height</Title>
+                            <Title bold="bold">Altura Média</Title>
                             <Row>
                                 <Title bold="bold" size={22} color>
                                     {plant.frequency.height}
@@ -70,7 +70,7 @@ export const Plant = ({route}: any) => {
                             </Row>
                         </Collumn>
                         <Collumn>
-                            <Title bold="bold">Temperature</Title>
+                            <Title bold="bold">Temperatura Média</Title>
                             <Row>
                                 <Title bold="bold" size={22} color>
                                     {plant.frequency.temperature}
