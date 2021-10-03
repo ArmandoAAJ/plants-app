@@ -1,5 +1,5 @@
 <h3 align="center">
-  Plant APP
+  Green Plant
 </h3>
 
 <blockquote align="center">“Mude você e todo o resto mudará naturalmente”!</blockquote>
@@ -14,7 +14,9 @@
 <br>
 
 <p align="center">
-  <img alt="Frontend" src="public/Portfolio.png" width="100%">
+  <img alt="Frontend" src="assets/home.gif" width="30%">
+  <img alt="Frontend" src="assets/plant.gif" width="30%">
+  <img alt="Frontend" src="assets/cart.gif" width="30%">
 </p>
 
 ## 🚀 Tecnologias
