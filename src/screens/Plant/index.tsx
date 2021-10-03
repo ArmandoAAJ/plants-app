@@ -56,7 +56,9 @@ export const Plant = ({route}: any) => {
                                 </Title>
                                 <Title bold="bold">
                                     {' /'}
-                                    {plant.frequency.repeat_every}
+                                    {plant.frequency.repeat_every === 'week'
+                                        ? 'semanalmente'
+                                        : 'diariamente'}
                                 </Title>
                             </Row>
                         </Collumn>
