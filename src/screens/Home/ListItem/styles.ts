@@ -49,7 +49,7 @@ export const Icon = styled(MaterialIcons).attrs({
 })``;
 
 export const AddCart = styled.Text`
-    font-size: 30;
+    font-size: 30px;
     color: ${Theme.pallet.secondary.text_color};
 `;
 
